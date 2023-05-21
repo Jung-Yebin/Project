@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.f{
+    font-family:'OTWelcomeRA'; font-size:15pt;
+}
+
+.turn {
+    animation: rotate_image 4s linear infinite;transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image{
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#mDial1, #mDial2, #mDial3 {
+   width:50%; height:50%;
+   background-color:LemonChiffon; border:5px solid gold;
+   border-radius: 7px;
+}
+
+#mBtn1, #mBtn2, #mBtn3 {
+   position:absolute; bottom:10px; right:10px;
+   padding:30px 50px;
+   background-color: gold;
+   border: 0; outline: 0;
+   font-size:30pt;
+}
+
+.st-wrap {
+   width: 70%;
+   margin: 100px auto; position: relative;
+}
+
+.st-wrap img {
+   width: 100%; vertical-align: middle;
+}
+
+.st-text {
+   padding: 5px 5px;
+   text-align: center; position: absolute;
+   top: 50%; left: 50%;
+   transform: translate( -50%, -50% );
+   line-height:20px;
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>비교</title>
+   <link href="{{ url_for('static', filename='star.css') }}" rel="stylesheet">
+   <style>
+      .back_col{
+      background:MidnightBlue;
+      }
+   </style>
+</head>
+<body class="back_col">
+<div class="st-wrap">
+   <div class="st-img"><img  src="{{ url_for('static', filename='star.PNG') }}"class="turn" style="display:block; margin:0 auto; width:500px;" onclick="show1()"></div>
+   <div class="st-text" onclick="show1()"><b class="f" style="font-size:40pt;">성별</b></div>
+</div>
+<div class="f" style="text-align:center;">
+   <dialog id="mDial1">
+      {% if gen_catenum == 0%}
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">없음</u>
+         <p style="font-size:40pt;">없음</p>
+      {% elif gen_catenum == 1%}
+         <img  src="{{ url_for('static', filename='category/food.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 2%}
+         <img  src="{{ url_for('static', filename='category/beauty.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 3%}
+         <img  src="{{ url_for('static', filename='category/finance.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 4%}
+         <img  src="{{ url_for('static', filename='category/communication.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 5%}
+         <img  src="{{ url_for('static', filename='category/clothing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 6%}
+         <img  src="{{ url_for('static', filename='category/event.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 7%}
+         <img  src="{{ url_for('static', filename='category/hobby.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 8%}
+         <img  src="{{ url_for('static', filename='category/culture.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 9%}
+         <img  src="{{ url_for('static', filename='category/education.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 10%}
+         <img  src="{{ url_for('static', filename='category/housing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 11%}
+         <img  src="{{ url_for('static', filename='category/health.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 12%}
+         <img  src="{{ url_for('static', filename='category/transportation.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% elif gen_catenum == 13%}
+         <img  src="{{ url_for('static', filename='category/digital.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% else %}
+         <img  src="{{ url_for('static', filename='category/etc.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{genfreq}}</u>
+         <p style="font-size:40pt;">평균 {{gencost}}원</p>
+      {% endif %}
+      <input type="button" id="mBtn1" onclick="close1()" class="f" value="닫 기" >
+   </dialog>
+</div>
+<div class="st-wrap">
+   <div class="st-img"><img  src="{{ url_for('static', filename='star.PNG') }}"class="turn" style="display:block; margin:0 auto; width:500px;" onclick="show2()"></div>
+   <div class="st-text" onclick="show2()"><b class="f" style="font-size:40pt;">직업별</b></div>
+</div>
+<div class="f" style="text-align:center;">
+   <dialog id="mDial2">
+      {% if job_catenum == 0%}
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">없음</u>
+         <p style="font-size:40pt;">없음</p>
+      {% elif job_catenum == 1%}
+         <img  src="{{ url_for('static', filename='category/food.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 2%}
+         <img  src="{{ url_for('static', filename='category/beauty.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 3%}
+         <img  src="{{ url_for('static', filename='category/finance.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 4%}
+         <img  src="{{ url_for('static', filename='category/communication.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 5%}
+         <img  src="{{ url_for('static', filename='category/clothing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 6%}
+         <img  src="{{ url_for('static', filename='category/event.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 7%}
+         <img  src="{{ url_for('static', filename='category/hobby.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 8%}
+         <img  src="{{ url_for('static', filename='category/culture.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 9%}
+         <img  src="{{ url_for('static', filename='category/education.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 10%}
+         <img  src="{{ url_for('static', filename='category/housing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 11%}
+         <img  src="{{ url_for('static', filename='category/health.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 12%}
+         <img  src="{{ url_for('static', filename='category/transportation.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% elif job_catenum == 13%}
+         <img  src="{{ url_for('static', filename='category/digital.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% else %}
+         <img  src="{{ url_for('static', filename='category/etc.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{jobfreq}}</u>
+         <p style="font-size:40pt;">평균 {{jobcost}}원</p>
+      {% endif %}
+      <input type="button" id="mBtn2" onclick="close2()" class="f" value="닫 기" >
+   </dialog>
+</div>
+<div class="st-wrap">
+   <div class="st-img"><img  src="{{ url_for('static', filename='star.PNG') }}"class="turn" style="display:block; margin:0 auto; width:500px;" onclick="show3()"></div>
+   <div class="st-text" onclick="show3()"><b class="f" style="font-size:40pt;">성별</b><p class="f" style="font-size:20pt;">&</p><b class="f" style="font-size:40pt;">직업별</b></div>
+</div>
+<div class="f" style="text-align:center;">
+   <dialog id="mDial3">
+      {% if total_catenum == 0%}
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">없음</u>
+         <p style="font-size:40pt;">없음</p>
+      {% elif total_catenum == 1%}
+         <img  src="{{ url_for('static', filename='category/food.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 2%}
+         <img  src="{{ url_for('static', filename='category/beauty.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 3%}
+         <img  src="{{ url_for('static', filename='category/finance.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 4%}
+         <img  src="{{ url_for('static', filename='category/communication.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 5%}
+         <img  src="{{ url_for('static', filename='category/clothing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 6%}
+         <img  src="{{ url_for('static', filename='category/event.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 7%}
+         <img  src="{{ url_for('static', filename='category/hobby.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 8%}
+         <img  src="{{ url_for('static', filename='category/culture.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 9%}
+         <img  src="{{ url_for('static', filename='category/education.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 10%}
+         <img  src="{{ url_for('static', filename='category/housing.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 11%}
+         <img  src="{{ url_for('static', filename='category/health.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 12%}
+         <img  src="{{ url_for('static', filename='category/transportation.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% elif total_catenum == 13%}
+         <img  src="{{ url_for('static', filename='category/digital.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% else %}
+         <img  src="{{ url_for('static', filename='category/etc.png') }}" style="padding:10%; display:block; margin:0 auto; width:200px;">
+         <p style="font-size:30pt">가장 많이 소비한 카테고리</p>
+         <u style="font-weight:bold; font-size:40pt;">{{totalfreq}}</u>
+         <p style="font-size:40pt;">평균 {{totalcost}}원</p>
+      {% endif %}
+      <input type="button" id="mBtn3" onclick="close3()" class="f" value="닫 기" >
+   </dialog>
+</div>
+<script>
+   function show1(){var dialog = document.getElementById("mDial1"); dialog.showModal();}
+   function close1(){var dialog = document.getElementById("mDial1"); dialog.close();}
+   function show2(){var dialog = document.getElementById("mDial2"); dialog.showModal();}
+   function close2(){var dialog = document.getElementById("mDial2"); dialog.close();}
+   function show3(){var dialog = document.getElementById("mDial3"); dialog.showModal();}
+   function close3(){var dialog = document.getElementById("mDial3"); dialog.close();}
+</script>
+</body>
+</html>

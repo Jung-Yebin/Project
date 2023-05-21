@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <link href="{{ url_for('static', filename='login_style.css') }}" rel="stylesheet">
+    {% block contents %}
+    <form action="{{url_for("find_account")}}" method="get">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    </head>
+    <body>
+        <div>
+        <form>
+            <h1>계정 찾기</h1>
+            <input type="text" name="name" id="name" class="design" placeholder="이름">
+            <input type="password" name="phone" id="phone" class="design" placeholder="전화번호(-을 포함하여 입력해 주세요)">
+            <div class="button">
+                <button type="submit" id="button"><font size="3.5px">계정 찾기</font></button>
+            </div>
+        </form>
+        </div>
+    </body>
+    {% endblock contents %}
+</html>

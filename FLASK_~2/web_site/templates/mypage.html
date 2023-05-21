@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "base.html"%}
+
+{% block user %}
+{% endblock user %}
+{% block contents%}
+<html>
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+        <style>
+            @font-face {
+                font-family: 'OTWelcomeRA';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+                font-weight: normal;
+                font-style: normal;
+            }
+            body {
+                font-family:'OTWelcomeRA';
+            }
+            #mypage {
+                margin:15px;
+                margin-top:16%;
+                padding-top:1%;
+                padding-bottom:5px;
+                height:100%;
+                background-color:mintcream;
+                border:3px solid;
+                box-shadow:18px 18px 18px grey;
+            }
+            h2 {
+                text-align:center;
+            }
+            #font {
+                font-size:18px;
+                text-align : center;
+                padding : 18% 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mypage">
+            <div id="font">
+                <h2 style="padding-bottom:30px">{{uid}}님의 정보</h2>
+                <p>아이디 : {{id}}</p>
+                <p>이름 : {{name}}</p>
+                <p>성별 : {{gender}}</p>
+                <p>생년월일 : {{birth}}</p>
+                <p>휴대전화 : {{number}}</p>
+                <p>직업 : {{job}}</p>
+                <h2 style="padding-top:10%; padding-bottom:5px">영양소</h2>
+            </div>
+        </div>
+    </body>
+</html>
+{% endblock contents%}

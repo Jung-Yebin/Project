@@ -1,0 +1,97 @@
+input[type="radio"] {display:none;}
+input[type="radio"] + label {display:inline-block; width:300px; height:100px; background:#CBFEED; color:#014730;}
+input[type="radio"]:checked + label {background:#7CFCD1;color:#014730; font-weight:bold;}
+.conbox {width=device-width;height:1800px;background:#7CFCD1;margin:0 auto;display:none;}
+input[id="tab01"]:checked ~ .con1 {display:block;}
+input[id="tab02"]:checked ~ .con2 {display:block;}
+input[id="tab03"]:checked ~ .con3 {display:block;}
+
+#type-btn { display: none; }
+#type-btn:checked ~ .type_explain { display: block; }
+.type_explain { display: none; }
+
+span {opacity: 0;}
+@keyframes fade {
+  to {opacity: 1;}
+}
+
+.parent {
+    height: 3em; /* 애니메이션 높이 */
+    overflow-y: hidden;
+    display: block;
+}
+.parent .child {
+    font-size: 3em;/* 애니메이션 높이 */
+    font-weight: bold;
+    line-height: 1;
+    animation-name: grow;
+    animation-duration: 1s;/* 애니메이션 시간 */
+}
+/* 키프레임 애니메이션 */
+@keyframes grow {
+    from { transform: translateY(3em) }/* 애니메이션 높이 */
+    to { transform: translateY(0) }
+}
+
+.h_img {
+  animation: scale 1s linear 1;
+  transform-origin: 50% 50%;
+}
+@keyframes scale {
+  0%   { transform: scale(0) }
+  100%  { transform: scale(1) }
+}
+
+.ht-wrap {
+	width: 100%;
+	position: relative;
+}
+.ht-wrap img {
+	width: 100%; vertical-align: middle;
+}
+.ht-text {
+	padding: 5px 5px;
+	text-align: center; position: absolute;
+	top: 50%; left: 50%;
+	transform: translate( -50%, -50% );
+	line-height:20px; line-width:100px;
+}
+
+.container {
+    width: 80%;
+    height: 80%;
+    margin:0 auto;
+    perspective: 1000px;
+}
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+.card_f, .card_b {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+}
+.card_f{
+    width: 100%;
+    height: 100%;
+    border: 5px solid #014730;
+    border-radius: 1em;
+    background:#CBFEED;
+    flex-direction:column;
+}
+.card_b{
+    width: 100%;
+    height: 100%;
+    border: 5px solid #014730;
+    border-radius: 1em;
+    transform: rotateY(180deg);
+    background:#CBFEED;
+}

@@ -1,0 +1,76 @@
+{% extends "base.html"%}
+
+{% block user %}
+{% endblock user %}
+
+{% block contents%}
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.0, minimum-scale=1.0">
+        <style>
+            @font-face {
+                font-family: 'DOSGothic';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_eight@1.0/DOSGothic.woff') format('woff');
+                font-weight: normal;
+                font-style: normal;}
+            body {
+                font-family:'DOSGothic';}
+            #receipt {
+                margin-left:15px;
+                margin-right:15px;
+                padding-top:75px;
+                padding-bottom:5px;
+                border:2px solid;
+            }
+            #title {
+                text-align:center;
+            }
+            progress {
+                appearance:none;
+                width:95%;
+            }
+            progress::-webkit-progress-bar {
+                background:#cbfeed71;
+                border-radius:5px;
+                height:20px;
+            }
+            progress::-webkit-progress-value {
+                border-radius:5px;
+                background:#7CFCD1;
+            }
+            #line {
+                padding-bottom:25px;
+                border-bottom:dashed 3px;
+                margin-right:10px;
+                margin-left:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="receipt">
+            <div id="title">
+                <strong>
+                    영수증을 이용한 양질의 소비
+                    <br>
+                    영양소
+                </strong>
+                <h2 style="margin-bottom:50px;">{{uid}}의 영수증</h2>
+            </div>
+            <br><br>
+            <p style="margin-left:10px; padding-bottom:20px;">이번달 예산 진행 상황
+                <br>
+                <label>[{{uthismonth}}]원 사용</label>
+                <progress value = {{per}} max="100">{{per}}%</progress>
+                <br>
+            <p style="margin-left:10px; padding-bottom:20px;">예상 사용 금액
+                <br>
+                {{predict_usage}}원 사용 예정</p>
+            <p id="line">올해 사용 금액
+                <br>
+                [{{uthisyear}}]원 사용
+                </p>
+            <p style="text-align:center; margin-top:100px; padding-bottom:75px;">이용해주셔서 감사합니다.</p>
+        </div>
+    </body>
+</html>
+{% endblock contents%}

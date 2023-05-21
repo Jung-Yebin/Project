@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 분석</title>
+    <link href="{{ url_for('static', filename='category.css') }}" rel="stylesheet">
+
+</head>
+<body>
+<div class="section" style="margin-top:40px;">
+    <input type="radio" name="slide" id="slide01" checked>
+    <input type="radio" name="slide" id="slide02">
+    <input type="radio" name="slide" id="slide03">
+    <input type="radio" name="slide" id="slide04">
+    <input type="radio" name="slide" id="slide05">
+    <input type="radio" name="slide" id="slide06">
+    <input type="radio" name="slide" id="slide07">
+    <input type="radio" name="slide" id="slide08">
+    <input type="radio" name="slide" id="slide09">
+    <input type="radio" name="slide" id="slide10">
+    <input type="radio" name="slide" id="slide11">
+    <input type="radio" name="slide" id="slide12">
+    <input type="radio" name="slide" id="slide13">
+    <input type="radio" name="slide" id="slide14">
+    <div class="slidewrap">
+        <ul class="slidelist">
+            <li><a>
+                    <label for="slide14" class="left"></label>
+                    <div class="textbox" style="background:#E04F5F;">
+                        <img src="{{ url_for('static', filename='category/housing.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">주거/생활</h3>
+                        <h3 id="month1" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E04F5F; width:{{fivemonth_live}}%;">{{fivemonth_live}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E04F5F; width:{{fourmonth_live}}%;">{{fourmonth_live}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E04F5F; width:{{threemonth_live}}%;">{{threemonth_live}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E04F5F; width:{{twomonth_live}}%;">{{twomonth_live}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E04F5F; width:{{lastmonth_live_rate}}%;">{{lastmonth_live_rate}}%</span></div>
+
+					</div>
+                    <label for="slide02" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide01" class="left"></label>
+                    <div class="textbox" style="background:#25B7D3;">
+                        <img src="{{ url_for('static', filename='category/food.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">식비</h3>
+						<h3 id="month2" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#25B7D3; width:{{fivemonth_food}}%;">{{fivemonth_food}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#25B7D3; width:{{fourmonth_food}}%;">{{fourmonth_food}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#25B7D3; width:{{threemonth_food}}%;">{{threemonth_food}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#25B7D3; width:{{twomonth_food}}%;">{{twomonth_food}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#25B7D3; width:{{lastmonth_food_rate}}%;">{{lastmonth_food_rate}}%</span></div>
+					</div>
+                    <label for="slide03" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide02" class="left"></label>
+                    <div class="textbox" style="background:#81D2EB;">
+                        <img src="{{ url_for('static', filename='category/clothing.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">의류/잡화</h3>
+                        <h3 id="month3" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#81D2EB; width:{{fivemonth_cloth}}%;">{{fivemonth_cloth}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#81D2EB; width:{{fourmonth_cloth}}%;">{{fourmonth_cloth}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#81D2EB; width:{{threemonth_cloth}}%;">{{threemonth_cloth}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#81D2EB; width:{{twomonth_cloth}}%;">{{twomonth_cloth}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#81D2EB; width:{{lastmonth_cloth_rate}}%;">{{lastmonth_cloth_rate}}%</span></div>
+					</div>
+                    <label for="slide04" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide03" class="left"></label>
+                    <div class="textbox" style="background:#C75C5C;">
+                        <img src="{{ url_for('static', filename='category/beauty.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">미용/뷰티</h3>
+                        <h3 id="month4" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#C75C5C; width:{{fivemonth_beauty}}%;">{{fivemonth_beauty}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#C75C5C; width:{{fourmonth_beauty}}%;">{{fourmonth_beauty}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#C75C5C; width:{{threemonth_beauty}}%;">{{threemonth_beauty}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#C75C5C; width:{{twomonth_beauty}}%;">{{twomonth_beauty}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#C75C5C; width:{{lastmonth_beauty_rate}}%;">{{lastmonth_beauty_rate}}%</span></div>
+					</div>
+                    <label for="slide05" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide04" class="left"></label>
+                    <div class="textbox" style="background:#E0E0D1;">
+                        <img src="{{ url_for('static', filename='category/transportation.png') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">교통</h3>
+                        <h3 id="month5" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E0E0D1; width:{{fivemonth_traffic}}%;">{{fivemonth_traffic}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E0E0D1; width:{{fourmonth_traffic}}%;">{{fourmonth_traffic}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E0E0D1; width:{{threemonth_traffic}}%;">{{threemonth_traffic}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E0E0D1; width:{{twomonth_traffic}}%;">{{twomonth_traffic}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#E0E0D1; width:{{lastmonth_traffic_rate}}%;">{{lastmonth_traffic_rate}}%</span></div>
+					</div>
+                    <label for="slide06" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide05" class="left"></label>
+                    <div class="textbox" style="background:#FABC3D;">
+                        <img src="{{ url_for('static', filename='category/communication.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">통신</h3>
+                        <h3 id="month6" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fivemonth_communication}}%;">{{fivemonth_communication}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fourmonth_communication}}%;">{{fourmonth_communication}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{threemonth_communication}}%;">{{threemonth_communication}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{twomonth_communication}}%;">{{twomonth_communication}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{lastmonth_communication_rate}}%;">{{lastmonth_communication_rate}}%</span></div>
+					</div>
+                    <label for="slide07" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide06" class="left"></label>
+                    <div class="textbox" style="background:#FABC3D;">
+                        <img src="{{ url_for('static', filename='category/culture.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">문화</h3>
+                        <h3 id="month7" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fivemonth_culture}}%;">{{fivemonth_culture}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fourmonth_culture}}%;">{{fourmonth_culture}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{threemonth_culture}}%;">{{threemonth_culture}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{twomonth_culture}}%;">{{twomonth_culture}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{lastmonth_culture_rate}}%;">{{lastmonth_culture_rate}}%</span></div>
+					</div>
+                    <label for="slide08" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide07" class="left"></label>
+                    <div class="textbox" style="background:#FABC3D;">
+                        <img src="{{ url_for('static', filename='category/event.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">경조사</h3>
+                        <h3 id="month8" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fivemonth_congratulate}}%;">{{fivemonth_congratulate}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{fourmonth_congratulate}}%;">{{fourmonth_congratulate}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{threemonth_congratulate}}%;">{{threemonth_congratulate}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{twomonth_congratulate}}%;">{{twomonth_congratulate}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#FABC3D; width:{{lastmonth_congratulate_rate}}%;">{{lastmonth_congratulate_rate}}%</span></div>
+					</div>
+                    <label for="slide09" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide08" class="left"></label>
+                    <div class="textbox" style="background:#76C2AF;">
+                        <img src="{{ url_for('static', filename='category/education.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">교육</h3>
+                        <h3 id="month9" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fivemonth_education}}%;">{{fivemonth_education}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fourmonth_education}}%;">{{fourmonth_education}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{threemonth_education}}%;">{{fourmonth_education}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{twomonth_education}}%;">{{fourmonth_education}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{lastmonth_education_rate}}%;">{{lastmonth_education_rate}}%</span></div>
+					</div>
+                    <label for="slide10" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide09" class="left"></label>
+                    <div class="textbox" style="background:#76C2AF;">
+                        <img src="{{ url_for('static', filename='category/digital.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">문구/디지털</h3>
+                        <h3 id="month10" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fivemonth_digital}}%;">{{fivemonth_digital}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fourmonth_digital}}%;">{{fourmonth_digital}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{threemonth_digital}}%;">{{threemonth_digital}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{twomonth_digital}}%;">{{twomonth_digital}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{lastmonth_digital_rate}}%;">{{lastmonth_digital_rate}}%</span></div>
+					</div>
+                    <label for="slide11" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide10" class="left"></label>
+                    <div class="textbox" style="background:#76C2AF;">
+                        <img src="{{ url_for('static', filename='category/hobby.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">취미/여가</h3>
+                        <h3 id="month11" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fivemonth_leisure}}%;">{{fivemonth_leisure}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{fourmonth_leisure}}%;">{{fourmonth_leisure}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{threemonth_leisure}}%;">{{threemonth_leisure}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{twomonth_leisure}}%;">{{twomonth_leisure}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#76C2AF; width:{{lastmonth_leisure_rate}}%;">{{lastmonth_leisure_rate}}%</span></div>
+					</div>
+                    <label for="slide12" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide11" class="left"></label>
+                    <div class="textbox" style="background:#EDC936;">
+                        <img src="{{ url_for('static', filename='category/health.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">건강</h3>
+                        <h3 id="month12" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#EDC936; width:{{fivemonth_health}}%;">{{fivemonth_health}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#EDC936; width:{{fourmonth_health}}%;">{{fourmonth_health}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#EDC936; width:{{threemonth_health}}%;">{{threemonth_health}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#EDC936; width:{{twomonth_health}}%;">{{twomonth_health}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#EDC936; width:{{lastmonth_health_rate}}%;">{{lastmonth_health_rate}}%</span></div>
+					</div>
+                    <label for="slide13" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide12" class="left"></label>
+                    <div class="textbox" style="background:#4F5D73;">
+                        <img src="{{ url_for('static', filename='category/finance.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">금융</h3>
+                        <h3 id="month13" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#4F5D73; width:{{fivemonth_bank}}%;">{{fivemonth_bank}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#4F5D73; width:{{fourmonth_bank}}%;">{{fourmonth_bank}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#4F5D73; width:{{threemonth_bank}}%;">{{threemonth_bank}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#4F5D73; width:{{twomonth_bank}}%;">{{twomonth_bank}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#4F5D73; width:{{lastmonth_bank_rate}}%;">{{lastmonth_bank_rate}}%</span></div>
+					</div>
+                    <label for="slide14" class="right"></label>
+                </a></li>
+            <li><a>
+                    <label for="slide13" class="left"></label>
+                    <div class="textbox" style="background:#DEBDDB;">
+                        <img src="{{ url_for('static', filename='category/etc.PNG') }}"style="margin-top:400px;width:100px;">
+                        <h3 class="f" style="font-size:17pt;">기타</h3>
+                        <h3 id="month14" class="f"></h3>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#DEBDDB; width:{{fivemonth_etc}}%;">{{fivemonth_etc}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#DEBDDB; width:{{fourmonth_etc}}%;">{{fourmonth_etc}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#DEBDDB; width:{{threemonth_etc}}%;">{{threemonth_etc}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#DEBDDB; width:{{twomonth_etc}}%;">{{twomonth_etc}}%</span></div>
+                        <div class="graph" style="margin-top:10px;"><span style="background:#DEBDDB; width:{{lastmonth_etc_rate}}%;">{{lastmonth_etc_rate}}%</span></div>
+					</div>
+                    <label for="slide01" class="right"></label>
+                </a></li>
+        </ul>
+    </div>
+</div>
+<div style="text-align:center; margin-top:-130px;">
+    <button class="btn" onclick="goBack()" style="font-size:13pt;">돌아가기</button>
+</div>
+<script>
+let day = new Date();
+document.getElementById('month1').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month2').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month3').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month4').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month5').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month6').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month7').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month8').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month9').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month10').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month11').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month12').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month13').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+document.getElementById('month14').innerHTML = parseInt(day.getMonth()-4) + "월 ~ " + parseInt(day.getMonth()) + "월";
+
+function goBack() {window.history.back();}
+</script>
+</body>
+</html>

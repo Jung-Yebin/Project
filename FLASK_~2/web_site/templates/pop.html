@@ -1,0 +1,69 @@
+<script language="javascript">
+    function moveClose() {
+    opener.location.href="login.html";
+    self.close();}
+</script>
+
+<!DOCTYPE html>
+<html>
+    {% block contents %}
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+    </head>
+    <body>
+        <div>
+        <form>
+            <p>아이디 : {{id}}</p>
+            <p>비밀번호 : {{pwd}}</p>
+            <li id="button"><a href = "{{url_for("login")}}"><font size="4px">확인</font></a></li>
+        </form>
+        </div>
+    </body>
+    {% endblock contents %}
+</html>
+
+<style>
+    @font-face {
+        font-family: 'OTWelcomeRA';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    body {
+        font-family:'OTWelcomeRA';
+    }
+    a {
+        display:block;
+    }
+    #button > a {
+        text-decoration:none;
+        color:black;
+        margin-bottom:30px;
+        padding:10px;
+        padding-top:20px;
+    }
+    * {
+        box-sizing:border-box;
+    }
+    form {
+        width:100%;
+        height:225px;
+        border:3.5px solid #CBFEED;
+        border-radius:5px;
+        background-color:#FFFFFF;
+        font-size:20px;
+        padding:20px;
+        margin:0 auto;
+        margin-top:68%; /*이걸로 중앙으로 맞추기*/
+    }
+    #button {
+        list-style:none;
+        padding-left:0px;
+        font-weight:800;
+        text-align:center;
+        background-color:#CBFEED;
+        border:none;
+        border-radius:10px;
+        width:100%;
+    }
+</style>

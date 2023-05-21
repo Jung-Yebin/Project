@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 분석</title>
+    <link href="{{ url_for('static', filename='category.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="section">
+    <input type="radio" name="slide" id="slide01" checked>
+    <input type="radio" name="slide" id="slide02">
+    <input type="radio" name="slide" id="slide03">
+    <input type="radio" name="slide" id="slide04">
+    <input type="radio" name="slide" id="slide05">
+    <input type="radio" name="slide" id="slide06">
+    <input type="radio" name="slide" id="slide07">
+    <input type="radio" name="slide" id="slide08">
+    <input type="radio" name="slide" id="slide09">
+    <input type="radio" name="slide" id="slide10">
+    <input type="radio" name="slide" id="slide11">
+    <input type="radio" name="slide" id="slide12">
+    <input type="radio" name="slide" id="slide13">
+    <input type="radio" name="slide" id="slide14">
+    <div class="slidewrap">
+        <ul class="slidelist">
+            <li><a>
+                    <label id="l1" for="slide14">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/housing.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="margin-top:50px; font-size:40pt;">주거/생활</h3>
+                        <div style="margin-top:50px;">
+                      <h3 id="lmonth1" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_live}}</p>
+                            <h3 id="tmonth1" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_live}}</p>
+                        </div>
+                        <h3 id="month1" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#E04F5F; width:{{fivemonth_live_rate}}%;">{{fivemonth_live_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E04F5F; width:{{fourmonth_live_rate}}%;">{{fourmonth_live_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E04F5F; width:{{threemonth_live_rate}}%;">{{threemonth_live_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E04F5F; width:{{twomonth_live_rate}}%;">{{twomonth_live_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E04F5F; width:{{lastmonth_live_rate}}%;">{{lastmonth_live_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r1" for="slide02">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l2" for="slide01">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/food.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">식비</h3>
+                        <div style="margin-top:50px;">
+                      <h3 id="lmonth2" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_food}}</p>
+                            <h3 id="tmonth2" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_food}}</p>
+                        </div>
+                        <h3 id="month2" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#25B7D3; width:{{fivemonth_food_rate}}%;">{{fivemonth_food_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#25B7D3; width:{{fourmonth_food_rate}}%;">{{fourmonth_food_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#25B7D3; width:{{threemonth_food_rate}}%;">{{threemonth_food_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#25B7D3; width:{{twomonth_food_rate}}%;">{{twomonth_food_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#25B7D3; width:{{lastmonth_food_rate}}%;">{{lastmonth_food_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r2" for="slide03">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l3" for="slide02">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/clothing.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">의류/잡화</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth3" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_cloth}}</p>
+                            <h3 id="tmonth3" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_cloth}}</p>
+                        </div>
+                        <h3 id="month3" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#81D2EB; width:{{fivemonth_cloth_rate}}%;">{{fivemonth_cloth_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#81D2EB; width:{{fourmonth_cloth_rate}}%;">{{fourmonth_cloth_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#81D2EB; width:{{threemonth_cloth_rate}}%;">{{threemonth_cloth_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#81D2EB; width:{{twomonth_cloth_rate}}%;">{{twomonth_cloth_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#81D2EB; width:{{lastmonth_cloth_rate}}%;">{{lastmonth_cloth_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r3" for="slide04">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l4" for="slide03">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/beauty.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">미용/뷰티</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth4" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_beauty}}</p>
+                            <h3 id="tmonth4" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_beauty}}</p>
+                        </div>
+                        <h3 id="month4" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#C75C5C; width:{{fivemonth_beauty_rate}}%;">{{fivemonth_beauty_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#C75C5C; width:{{fourmonth_beauty_rate}}%;">{{fourmonth_beauty_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#C75C5C; width:{{threemonth_beauty_rate}}%;">{{threemonth_beauty_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#C75C5C; width:{{twomonth_beauty_rate}}%;">{{twomonth_beauty_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#C75C5C; width:{{lastmonth_beauty_rate}}%;">{{lastmonth_beauty_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r4" for="slide05">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l5" for="slide04">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/transportation.png') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">교통</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth5" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_traffic}}</p>
+                            <h3 id="tmonth5" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_traffic}}</p>
+                        </div>
+                        <h3 id="month5" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#E0E0D1; width:{{fivemonth_traffic_rate}}%;">{{fivemonth_traffic_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E0E0D1; width:{{fourmonth_traffic_rate}}%;">{{fourmonth_traffic_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E0E0D1; width:{{threemonth_traffic_rate}}%;">{{threemonth_traffic_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E0E0D1; width:{{twomonth_traffic_rate}}%;">{{twomonth_traffic_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#E0E0D1; width:{{lastmonth_traffic_rate}}%;">{{lastmonth_traffic_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r5" for="slide06">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l6" for="slide05">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/communication.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">통신</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth6" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_communication}}</p>
+                            <h3 id="tmonth6" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_communication}}</p>
+                        </div>
+                        <h3 id="month6" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#FABC3D; width:{{fivemonth_communication_rate}}%;">{{fivemonth_communication_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{fourmonth_communication_rate}}%;">{{fourmonth_communication_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{threemonth_communication_rate}}%;">{{threemonth_communication_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{twomonth_communication_rate}}%;">{{twomonth_communication_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{lastmonth_communication_rate}}%;">{{lastmonth_communication_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r6" for="slide07">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l7" for="slide06">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/culture.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">문화</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth7" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_culture}}</p>
+                            <h3 id="tmonth7" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_culture}}</p>
+                        </div>
+                        <h3 id="month7" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#FABC3D; width:{{fivemonth_culture_rate}}%;">{{fivemonth_culture_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{fourmonth_culture_rate}}%;">{{fourmonth_culture_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{threemonth_culture_rate}}%;">{{threemonth_culture_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{twomonth_culture_rate}}%;">{{twomonth_culture_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{lastmonth_culture_rate}}%;">{{lastmonth_culture_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r7" for="slide08">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l8" for="slide07">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/event.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">경조사</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth8" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_congratulate}}</p>
+                            <h3 id="tmonth8" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_congratulate}}</p>
+                        </div>
+                        <h3 id="month8" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#FABC3D; width:{{fivemonth_congratulate_rate}}%;">{{fivemonth_congratulate_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{fourmonth_congratulate_rate}}%;">{{fourmonth_congratulate_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{threemonth_congratulate_rate}}%;">{{threemonth_congratulate_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{twomonth_congratulate_rate}}%;">{{twomonth_congratulate_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#FABC3D; width:{{lastmonth_congratulate_rate}}%;">{{lastmonth_congratulate_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r8" for="slide09">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l9" for="slide08">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/education.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">교육</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth9" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_education}}</p>
+                            <h3 id="tmonth9" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_education}}</p>
+                        </div>
+                        <h3 id="month9" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#76C2AF; width:{{fivemonth_education_rate}}%;">{{fivemonth_education_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{fourmonth_education_rate}}%;">{{fourmonth_education_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{threemonth_education_rate}}%;">{{threemonth_education_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{twomonth_education_rate}}%;">{{twomonth_education_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{lastmonth_education_rate}}%;">{{lastmonth_education_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r9" for="slide10">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l10" for="slide09">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/digital.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">문구/디지털</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth10" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_digital}}</p>
+                            <h3 id="tmonth10" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_digital}}</p>
+                        </div>
+                        <h3 id="month10" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#76C2AF; width:{{fivemonth_digital_rate}}%;">{{fivemonth_digital_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{fourmonth_digital_rate}}%;">{{fourmonth_digital_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{threemonth_digital_rate}}%;">{{threemonth_digital_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{twomonth_digital_rate}}%;">{{twomonth_digital_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{lastmonth_digital_rate}}%;">{{lastmonth_digital_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r10" for="slide11">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l11" for="slide10">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/hobby.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">취미/여가</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth11" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_leisure}}</p>
+                            <h3 id="tmonth11" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_leisure}}</p>
+                        </div>
+                        <h3 id="month11" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#76C2AF; width:{{fivemonth_leisure_rate}}%;">{{fivemonth_leisure_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{fourmonth_leisure_rate}}%;">{{fourmonth_leisure_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{threemonth_leisure_rate}}%;">{{threemonth_leisure_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{twomonth_leisure_rate}}%;">{{twomonth_leisure_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#76C2AF; width:{{lastmonth_leisure_rate}}%;">{{lastmonth_leisure_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r11" for="slide12">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l12" for="slide11">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/health.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">건강</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth12" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_health}}</p>
+                            <h3 id="tmonth12" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_health}}</p>
+                        </div>
+                        <h3 id="month12" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#EDC936; width:{{fivemonth_health_rate}}%;">{{fivemonth_health_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#EDC936; width:{{fourmonth_health_rate}}%;">{{fourmonth_health_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#EDC936; width:{{threemonth_health_rate}}%;">{{threemonth_health_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#EDC936; width:{{twomonth_health_rate}}%;">{{twomonth_health_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#EDC936; width:{{lastmonth_health_rate}}%;">{{lastmonth_health_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r12" for="slide13">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l13" for="slide12">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/finance.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">금융</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth13" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_bank}}</p>
+                            <h3 id="tmonth13" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_bank}}</p>
+                        </div>
+                        <h3 id="month13" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#4F5D73; width:{{fivemonth_bank_rate}}%;">{{fivemonth_bank_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#4F5D73; width:{{fourmonth_bank_rate}}%;">{{fourmonth_bank_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#4F5D73; width:{{threemonth_bank_rate}}%;">{{threemonth_bank_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#4F5D73; width:{{twomonth_bank_rate}}%;">{{twomonth_bank_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#4F5D73; width:{{lastmonth_bank_rate}}%;">{{lastmonth_bank_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r13" for="slide14">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+            <li><a>
+                    <label id="l14" for="slide13">
+                        <img src="{{ url_for('static', filename='left.PNG') }}"style="width:150px;">
+                    </label>
+                    <div class="textbox">
+                        <img src="{{ url_for('static', filename='category/etc.PNG') }}"style="width:150px;">
+                        <h3 class="f" style="font-size:25pt; font-size:40pt;">기타</h3>
+                        <div style="margin-top:50px;">
+                            <h3 id="lmonth14" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{lastmonth_etc}}</p>
+                            <h3 id="tmonth14" class="f" style="margin-top:20px; font-size:35pt;"></h3>
+                      <p class="f" style="margin-top:10px; font-size:35pt;">{{thismonth_etc}}</p>
+                        </div>
+                        <h3 id="month14" class="f" style="float:left; font-size:25pt; margin-top:50px; line-height:1.5;"></h3>
+                        <div style="float:left; margin-left:10px;">
+                            <div class="graph" style="margin-top:50px;"><span style="background:#DEBDDB; width:{{fivemonth_etc_rate}}%;">{{fivemonth_etc_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#DEBDDB; width:{{fourmonth_etc_rate}}%;">{{fourmonth_etc_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#DEBDDB; width:{{threemonth_etc_rate}}%;">{{threemonth_etc_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#DEBDDB; width:{{twomonth_etc_rate}}%;">{{twomonth_etc_rate}}%</span></div>
+                            <div class="graph" style="margin-top:20px;"><span style="background:#DEBDDB; width:{{lastmonth_etc_rate}}%;">{{lastmonth_etc_rate}}%</span></div>
+                        </div>
+               </div>
+                    <label id="r14" for="slide01">
+                        <img src="{{ url_for('static', filename='right.PNG') }}"style="width:150px;">
+                    </label>
+                    <img src="{{ url_for('static', filename='back.PNG') }}" class="photo">
+                </a></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+let day = new Date();
+document.getElementById('lmonth1').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth1').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth2').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth2').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth3').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth3').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth4').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth4').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth5').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth5').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth6').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth6').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth7').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth7').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth8').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth8').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth9').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth9').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth10').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth10').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth11').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth11').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth12').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth12').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth13').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth13').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+document.getElementById('lmonth14').innerHTML = parseInt(day.getMonth()) + "월 총 지출 금액";
+document.getElementById('tmonth14').innerHTML = parseInt(day.getMonth()+1) + "월 총 지출 금액";
+
+document.getElementById('month1').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month2').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month3').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month4').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month5').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month6').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month7').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month8').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month9').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month10').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month11').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month12').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month13').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+document.getElementById('month14').innerHTML = parseInt(day.getMonth()-4) + "월" + "<br>" + parseInt(day.getMonth()-3) + "월" + "<br>" + parseInt(day.getMonth()-2) + "월" + "<br>" + parseInt(day.getMonth()-1) + "월" + "<br>" + parseInt(day.getMonth()) + "월";
+</script>
+</body>
+</html>

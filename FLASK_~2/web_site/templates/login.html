@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <link href="{{ url_for('static', filename='login_style.css') }}" rel="stylesheet">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  </head>
+  <body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
+    <div>
+      <form action="{{url_for("login_done")}}" method="get">
+        <h1>로그인</h1>
+        <input type="text" name="id" id="id" class="design" placeholder="아이디">
+        <input type="password" name="pwd" id="pwd" class="design" placeholder="비밀번호">
+        <button type="submit" id="button"><font size="4px">로그인</font></button>
+
+
+
+        <div id="account">
+          <a href="{{url_for("find_account")}}">계정 찾기</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

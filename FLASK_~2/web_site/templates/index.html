@@ -1,0 +1,120 @@
+{% extends "base.html"%}
+{% block user %}
+{% if user=="Login" %}
+<body xmlns="http://www.w3.org/1999/html">
+    <header>
+        <header>
+            <span>안녕하세요!</span>
+            <a id="information" href = "{{url_for("login")}}">로그인</a>
+            <a id="information" href = "{{url_for("find_account")}}">계정찾기</a>
+            <div id="logoimage2">
+                <center><img src="{{ url_for('static', filename='로고완성.jpg') }}" width="100%" height="150%"></center>
+            </div>
+        </header>
+    </header>
+</body>
+{% else %}
+<body>
+    <header>
+        <header>
+            <span>{{user}}님 반갑습니다!</span>
+            <a id="information" href = "{{url_for("logout")}}">로그아웃</a>
+            <div id="logoimage">
+                <center><img src="{{ url_for('static', filename='로고완성완성.jpg') }}" width="70%" height="80px"></center>
+            </div>
+            <body>
+            <ul>
+                <li id="menu">MENU</li>
+                <li id="click"><a href="{{url_for("user_posts", uid=user)}}">나의예산</a></li>
+                <li id="click"><a href="{{url_for("star", uid=user)}}">⭐별별별 비교⭐</a></li>
+                <li id="click"><a href="{{url_for("category_analysis", uid=user)}}">카테고리 분석</a></li>
+                <li id="click"><a href="{{url_for("habit", uid=user)}}">소비습관 분석</a></li>
+                <li id="click2"><a href="{{url_for("my_page", uid=user)}}">마이페이지</a></li>
+            </ul>
+        </header>
+    </header>
+</body>
+
+{% endif %}
+{% endblock user %}
+
+{% block contents%}
+    <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitamin_Website</title>
+    <style>
+        @font-face {
+            font-family: 'OTWelcomeRA';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family:'OTWelcomeRA';
+        }
+        span {
+            font-size:13.5px;
+            color:black;
+        }
+        #information {
+            font-size:13.5px;
+            color:#014730;
+        }
+        #logoimage {
+            position:relative;
+            padding-top:120px;
+        }
+        #logoimage2 {
+            position:relative;
+            padding-top:50%;
+        }
+        ul {
+            list-style-type:none;
+            margin:0 auto;
+            margin-top:30px; /*위치 조정*/
+            margin-bottom:10px;
+            padding:0;
+            width:80%;
+            border:3px solid #014730;
+            border-radius:20px;
+        }
+        li {
+            text-align:center;
+        }
+        li a {
+            display:block;
+            color:black;
+            padding-top:15px;
+            padding-bottom:15px;
+            text-decoration:none;
+        }
+        #menu{
+            background-color:#7CFCD1;
+            font-weight:800;
+            border-top-right-radius:18px;
+            border-top-left-radius:18px;
+            display:block;
+            color:black;
+            padding-top:18px;
+            padding-bottom:15px;
+            text-decoration:none;
+        }
+        #click {
+            background-color:#CBFEED;
+            border-bottom:2px solid #F5FFFA;
+        }
+        #click2 {
+            background-color:#CBFEED;
+            border-bottom-left-radius:18px;
+            border-bottom-right-radius:18px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <header>
+        </header>
+    </header>
+{% endblock contents%}

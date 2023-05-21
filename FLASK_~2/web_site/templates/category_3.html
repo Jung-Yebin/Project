@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 분석</title>
+    <link rel="stylesheet" href="category.css" />
+    <style>
+        .back_col{
+		background:#CBFEED;
+		}
+    </style>
+</head>
+<body class="back_col" style="margin-top:30px; text-align:center;">
+<p class="f" style="margin-top:20px; font-size:20pt;">내가 좋아하는 최고의 조합</p>
+{% if catenum == 1%}
+<img src="{{ url_for('static', filename='category/food.png') }}" style="margin-top:30px; width:100px; border:5px solid #014730; border-radius:70px;"><!--최대 소비 카테고리 이미지-->
+{% elif catenum == 2%}
+<img class="h_img" src="{{ url_for('static', filename='category/finance.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 3%}
+<img class="h_img" src="{{ url_for('static', filename='category/beauty.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 4%}
+<img class="h_img" src="{{ url_for('static', filename='category/communication.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 5%}
+<img class="h_img" src="{{ url_for('static', filename='category/clothing.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 6%}
+<img class="h_img" src="{{ url_for('static', filename='category/event.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 7%}
+<img class="h_img" src="{{ url_for('static', filename='category/hobby.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 8%}
+<img class="h_img" src="{{ url_for('static', filename='category/culture.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 9%}
+<img class="h_img" src="{{ url_for('static', filename='category/education.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 10%}
+<img class="h_img" src="{{ url_for('static', filename='category/housing.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 11%}
+<img class="h_img" src="{{ url_for('static', filename='category/health.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 12%}
+<img class="h_img" src="{{ url_for('static', filename='category/transportation.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 13%}
+<img class="h_img" src="{{ url_for('static', filename='category/digital.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif catenum == 14%}
+<img class="h_img" src="{{ url_for('static', filename='category/etc.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% else %}
+{% endif %}
+<p class="f" style="margin-top:15px; font-size:25pt;">{{ucategory}}</p>
+<div><img src="{{ url_for('static', filename='clip.png') }}" style="margin-top:10px; margin-bottom:10px; height:100px;"></div>
+{% if associationnum == 1%}
+<img src="{{ url_for('static', filename='category/food.png') }}" style="margin-top:30px; width:100px; border:5px solid #014730; border-radius:70px;"><!--최대 소비 카테고리 이미지-->
+{% elif associationnum == 2%}
+<img class="h_img" src="{{ url_for('static', filename='category/finance.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 3%}
+<img class="h_img" src="{{ url_for('static', filename='category/beauty.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 4%}
+<img class="h_img" src="{{ url_for('static', filename='category/communication.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 5%}
+<img class="h_img" src="{{ url_for('static', filename='category/clothing.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 6%}
+<img class="h_img" src="{{ url_for('static', filename='category/event.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 7%}
+<img class="h_img" src="{{ url_for('static', filename='category/hobby.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 8%}
+<img class="h_img" src="{{ url_for('static', filename='category/culture.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 9%}
+<img class="h_img" src="{{ url_for('static', filename='category/education.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 10%}
+<img class="h_img" src="{{ url_for('static', filename='category/housing.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 11%}
+<img class="h_img" src="{{ url_for('static', filename='category/health.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 12%}
+<img class="h_img" src="{{ url_for('static', filename='category/transportation.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 13%}
+<img class="h_img" src="{{ url_for('static', filename='category/digital.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% elif associationnum == 14%}
+<img class="h_img" src="{{ url_for('static', filename='category/etc.png') }}" alt="image" style="border-radius:20px; width:300px; height:300px;"/>
+{% else %}
+{% endif %}
+
+<p class="f" style="margin-top:15px; font-size:25pt;">{{u_asso_category}}</p>
+
+</body>
+</html>
