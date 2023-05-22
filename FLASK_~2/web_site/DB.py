@@ -86,18 +86,14 @@ class DBModule:
         today = datetime.today()
         thisyear = today.strftime("%Y")
 
-        print(name_list)
-        print(date_list)
-        print(category_list)
-        print(usage_list)
         result = pd.DataFrame()
         result['name'] = name_list
         result['date'] = date_list
         result['category'] = category_list
         result['cost'] = usage_list
 
-        # dataFilter = result['date'].str.contains(thisyear)
-        # result = result[dataFilter]
+        #dataFilter = result['date'].str.contains(thisyear)
+        #result = result[dataFilter]
 
         ## 사용자가 올해 소비한 총 금액
         usage_list = result['cost'].to_list()
@@ -145,10 +141,9 @@ class DBModule:
         x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], 1))
         y_test = values[row:, -1]
 
-        print(result)
-
-        print(x_train.shape)
-        print(x_test.shape)
+        #print(result)
+        #print(x_train.shape)
+        #print(x_test.shape)
 
         # 모델 생성
         model = Sequential()
@@ -164,15 +159,15 @@ class DBModule:
         # 예측
         pred = model.predict(x_test)
 
-        #학습 정확성 & 검증 정확성 시각화
-        print(history.history)
-        plt.plot(history.history['accuracy'])
-        plt.plot(history.history['loss'])
-        plt.title('Model accuracy')
-        plt.ylabel('Accuracy')
-        plt.xlabel('Epoch')
-        plt.legend(['accuracy', 'Loss'], loc='upper left')
-        plt.show()
+        ### 학습 정확성 & 검증 정확성 시각화
+        #print(history.history)
+        #plt.plot(history.history['accuracy'])
+        #plt.plot(history.history['loss'])
+        #plt.title('Model accuracy')
+        #plt.ylabel('Accuracy')
+        #plt.xlabel('Epoch')
+        #plt.legend(['accuracy', 'Loss'], loc='upper left')
+        #plt.show()
 
         # 역정규화
         min_value = result['cost'].tail(10).min()
@@ -182,43 +177,7 @@ class DBModule:
         y_predict = v[0]
         y_predict = round((y_predict * (max_value - min_value)) + min_value)
 
-        usage_list = list(map(int, usage_list))
-
-        today = datetime.today()
-        thisyear = today.strftime("%Y")
-
-        result = pd.DataFrame()
-        result['name'] = name_list
-        result['date'] = date_list
-        result['category'] = category_list
-        result['cost'] = usage_list
-
-        dataFilter = result['date'].str.contains(thisyear)
-        result = result[dataFilter]
-
-        ## 사용자가 올해 소비한 총 금액
-        usage_list = result['cost'].to_list()
-        usage = sum(usage_list)
-
-        ## 사용자가 이번달 소비한 총 금액
-        thismonth = today.strftime("%Y-%m")
-        dataFilter = result['date'].str.contains(thismonth)
-        uthismonth = result[dataFilter]
-        uthismonth = uthismonth['cost'].to_list()
-        uthismonth = list(map(int, uthismonth))
-        uthismonth = sum(uthismonth)
-
-        ## 사용자가 올해 소비한 총 금액
-        uthisyear = result['cost'].to_list()
-        uthisyear = list(map(int, uthisyear))
-        uthisyear = sum(uthisyear)
-
-
-        result.loc[result['name'] == uid, 'name'] = 1
-
-        ucategory = result['category'].mode()[0]
-
-        return ucategory, users_budget, uthismonth, usage, y_predict, uthisyear
+        return users_budget, uthismonth, usage, y_predict, uthisyear
 
     def users_page(self, uid):
         users = self.db.child("User").get().val()
@@ -284,29 +243,26 @@ class DBModule:
                 for k2, v2 in date.val().items():
                     category = self.db.child("Calendar").child(Username_list[count]).child(k2).get()
                     for k3, v3 in category.val().items():
-                        if None in v3:
+                        if None in v3 and len(v3) == 2:
                             v3 = {'1': v3[-1]}
-                        for i in range(
-                                len(self.db.child("Calendar").child(Username_list[count]).child(k2).child(k3).get().val())):
-                            num = v3
-                        for k4, v4 in num.items():
+                        my = {}
+                        if None in v3 and len(v3) > 2:
+                            for i, v in enumerate(v3[1:], start=1):
+                                my[str(i)] = v
+                            v3 = my
+                        for v4 in v3.values():
+                            value = self.db.child("User").child(k).get().val()
 
-                            for n in range(len(k4)):
-                                cost = v4
+                            for condition_key, condition_val in value.items():
+                                if condition_key == 'gen':
+                                    gender_list.append(condition_val)
+                                if condition_key == 'job':
+                                    job_list.append(condition_val)
 
-                                value = self.db.child("User").child(k).get().val()
-
-                                for k6, v6 in value.items():
-                                    if k6 == 'gen':
-                                        gender_list.append(v6)
-                                    if k6 == 'job':
-                                        job_list.append(v6)
-
-                                for k5, v5 in cost.items():
-                                    name_list.append(k)
-                                    cost_list.append(v5)
-                                    category_list.append(k3)
-                                    date_list.append(k2)
+                            cost_list += v4.values()
+                            name_list.append(k)
+                            category_list.append(k3)
+                            date_list.append(k2)
 
         cost_list = list(map(int, cost_list))
         df = pd.DataFrame()
@@ -393,29 +349,26 @@ class DBModule:
                 for k2, v2 in date.val().items():
                     category = self.db.child("Calendar").child(Username_list[count]).child(k2).get()
                     for k3, v3 in category.val().items():
-                        if None in v3:
+                        if None in v3 and len(v3) == 2:
                             v3 = {'1': v3[-1]}
-                        for i in range(
-                                len(self.db.child("Calendar").child(Username_list[count]).child(k2).child(k3).get().val())):
-                            num = v3
-                        for k4, v4 in num.items():
+                        my = {}
+                        if None in v3 and len(v3) > 2:
+                            for i, v in enumerate(v3[1:], start=1):
+                                my[str(i)] = v
+                            v3 = my
+                        for v4 in v3.values():
+                            value = self.db.child("User").child(k).get().val()
 
-                            for n in range(len(k4)):
-                                cost = v4
+                            for condition_key, condition_val in value.items():
+                                if condition_key == 'gen':
+                                    gender_list.append(condition_val)
+                                if condition_key == 'job':
+                                    job_list.append(condition_val)
 
-                                value = self.db.child("User").child(k).get().val()
-
-                                for k6, v6 in value.items():
-                                    if k6 == 'gen':
-                                        gender_list.append(v6)
-                                    if k6 == 'job':
-                                        job_list.append(v6)
-
-                                for k5, v5 in cost.items():
-                                    name_list.append(k)
-                                    cost_list.append(v5)
-                                    category_list.append(k3)
-                                    date_list.append(k2)
+                            cost_list += v4.values()
+                            name_list.append(k)
+                            category_list.append(k3)
+                            date_list.append(k2)
 
         cost_list = list(map(int, cost_list))
         df = pd.DataFrame()
@@ -484,7 +437,6 @@ class DBModule:
             u_average_consum = uconsum_sum / u_lastmonth_freq
 
         # 이번달& 지난달 최대 지출 날짜
-
         today = datetime.today()
         before_one_month = today - relativedelta(months=1)
         months_ago = before_one_month.strftime("%Y-%m")
@@ -556,7 +508,6 @@ class DBModule:
             thismonth_list = thismonth_result
 
         #카테고리별 지출 top3
-
         my_df = df['name'] == uid
         #print(my_df)
         dict_data = df[my_df]['category'].value_counts(ascending=False)
@@ -574,8 +525,6 @@ class DBModule:
         category_freq['category'] = dict_data.index
         category_freq['count'] = dict_data.values
 
-        #print(category_freq)
-
         cate = []
 
         if len(category_unique) < 3:
@@ -585,6 +534,7 @@ class DBModule:
             for i in range(3):
                 cate.extend(str(i + 1) + "위" +category_freq['category'][category_freq['count'] == category_unique[i]])
 
+        ## 내가 사용한 카테고리 대상 연관분석
         if df[my_df].empty:
             ucategory = "정보없음"
             templist = "정보없음"
@@ -606,15 +556,11 @@ class DBModule:
                 for j in range(len(my_category)):
                     category.loc[Association_name_list[i]][my_category[j]] = category.loc[Association_name_list[i]][my_category[j]] + 1
 
-            print("카테고리:")
-            print(category.loc[uid])
             condition1 = category.loc[uid].iloc[0:clist.index(ucategory)]
             condition2 = category.loc[uid].iloc[clist.index(ucategory)+1 : len(clist)]
             maxvalue = pd.concat([condition1, condition2]).max()
             temp_v = pd.concat([condition1, condition2]) == maxvalue
             temp_list = pd.concat([condition1, condition2])[temp_v].index.tolist()
-            print(ucategory)
-            print(temp_list)
 
             ## 전체 사용자 대상 연관분석
             users_condition1 = category.corr()[ucategory][0:clist.index(ucategory)]
@@ -622,9 +568,7 @@ class DBModule:
             users_maxvalue = pd.concat([users_condition1, users_condition2]).max()
             users_temp_v = pd.concat([users_condition1, users_condition2]) == users_maxvalue
             users_temp_list = pd.concat([users_condition1, users_condition2])[users_temp_v].index.tolist()
-            # 최대소비카테고리
-            #print(ucategory)
-            #print(temp_list)
+
 
         return lastmonth_list,cate, users_budget,users_lastmonth_freq, users_average_consum, u_lastmonth_freq, u_average_consum, u_thismonth_freq, u_thisconsum_sum,ucategory, temp_list, users_temp_list
 
@@ -659,7 +603,6 @@ class DBModule:
 
         gender_list = []
         job_list = []
-
         for k, v in calendar.val().items():
             count = count + 1
             if Username_list[count] in k:
@@ -667,29 +610,26 @@ class DBModule:
                 for k2, v2 in date.val().items():
                     category = self.db.child("Calendar").child(Username_list[count]).child(k2).get()
                     for k3, v3 in category.val().items():
-                        if None in v3:
+                        if None in v3 and len(v3) == 2:
                             v3 = {'1': v3[-1]}
-                        for i in range(
-                                len(self.db.child("Calendar").child(Username_list[count]).child(k2).child(k3).get().val())):
-                            num = v3
-                        for k4, v4 in num.items():
+                        my = {}
+                        if None in v3 and len(v3) > 2:
+                            for i, v in enumerate(v3[1:], start=1):
+                                my[str(i)] = v
+                            v3 = my
+                        for v4 in v3.values():
+                            value = self.db.child("User").child(k).get().val()
 
-                            for n in range(len(k4)):
-                                cost = v4
+                            for condition_key, condition_val in value.items():
+                                if condition_key == 'gen':
+                                    gender_list.append(condition_val)
+                                if condition_key == 'job':
+                                    job_list.append(condition_val)
 
-                                value = self.db.child("User").child(k).get().val()
-
-                                for k6, v6 in value.items():
-                                    if k6 == 'gen':
-                                        gender_list.append(v6)
-                                    if k6 == 'job':
-                                        job_list.append(v6)
-
-                                for k5, v5 in cost.items():
-                                    name_list.append(k)
-                                    cost_list.append(v5)
-                                    category_list.append(k3)
-                                    date_list.append(k2)
+                            cost_list += v4.values()
+                            name_list.append(k)
+                            category_list.append(k3)
+                            date_list.append(k2)
 
         cost_list = list(map(int, cost_list))
         df = pd.DataFrame()
@@ -1271,352 +1211,3 @@ class DBModule:
 
         return thismonth_food, thismonth_bank, thismonth_beauty, thismonth_digital, thismonth_communication, thismonth_congratulate,thismonth_leisure,thismonth_culture,thismonth_education,thismonth_live,thismonth_health,thismonth_traffic,thismonth_cloth,thismonth_etc,lastmonth_food, lastmonth_bank, lastmonth_beauty, lastmonth_digital, lastmonth_communication, lastmonth_congratulate,lastmonth_leisure,lastmonth_culture,lastmonth_education,lastmonth_live,lastmonth_health,lastmonth_traffic,lastmonth_cloth,lastmonth_etc, lastmonth_food_rate, lastmonth_bank_rate, lastmonth_beauty_rate, lastmonth_digital_rate, lastmonth_communication_rate, lastmonth_congratulate_rate,lastmonth_leisure_rate,lastmonth_culture_rate,lastmonth_education_rate,lastmonth_live_rate,lastmonth_health_rate,lastmonth_traffic_rate,lastmonth_cloth_rate,lastmonth_etc_rate,twomonth_food, twomonth_bank, twomonth_beauty, twomonth_digital, twomonth_communication, twomonth_congratulate,twomonth_leisure,twomonth_culture,twomonth_education,twomonth_live,twomonth_health,twomonth_traffic,twomonth_cloth,twomonth_etc,threemonth_food, threemonth_bank, threemonth_beauty, threemonth_digital, threemonth_communication, threemonth_congratulate,threemonth_leisure,threemonth_culture,threemonth_education,threemonth_live,threemonth_health,threemonth_traffic,threemonth_cloth,threemonth_etc,fourmonth_food, fourmonth_bank, fourmonth_beauty, fourmonth_digital, fourmonth_communication, fourmonth_congratulate,fourmonth_leisure,fourmonth_culture,fourmonth_education,fourmonth_live,fourmonth_health,fourmonth_traffic,fourmonth_cloth,fourmonth_etc,fivemonth_food, fivemonth_bank, fivemonth_beauty, fivemonth_digital, fivemonth_communication, fivemonth_congratulate,fivemonth_leisure,fivemonth_culture,fivemonth_education,fivemonth_live,fivemonth_health,fivemonth_traffic,fivemonth_cloth,fivemonth_etc,twomonth_food_rate, twomonth_bank_rate, twomonth_beauty_rate, twomonth_digital_rate, twomonth_communication_rate, twomonth_congratulate_rate,twomonth_leisure_rate,twomonth_culture_rate,twomonth_education_rate,twomonth_live_rate,twomonth_health_rate,twomonth_traffic_rate,twomonth_cloth_rate,twomonth_etc_rate,threemonth_food_rate, threemonth_bank_rate, threemonth_beauty_rate, threemonth_digital_rate, threemonth_communication_rate, threemonth_congratulate_rate,threemonth_leisure_rate,threemonth_culture_rate,threemonth_education_rate,threemonth_live_rate,threemonth_health_rate,threemonth_traffic_rate,threemonth_cloth_rate,threemonth_etc_rate,fourmonth_food_rate, fourmonth_bank_rate, fourmonth_beauty_rate, fourmonth_digital_rate, fourmonth_communication_rate, fourmonth_congratulate_rate,fourmonth_leisure_rate,fourmonth_culture_rate,fourmonth_education_rate,fourmonth_live_rate,fourmonth_health_rate,fourmonth_traffic_rate,fourmonth_cloth_rate,fourmonth_etc_rate,fivemonth_food_rate, fivemonth_bank_rate, fivemonth_beauty_rate, fivemonth_digital_rate, fivemonth_communication_rate, fivemonth_congratulate_rate,fivemonth_leisure_rate,fivemonth_culture_rate,fivemonth_education_rate,fivemonth_live_rate,fivemonth_health_rate,fivemonth_traffic_rate,fivemonth_cloth_rate,fivemonth_etc_rate
 
-    def association_analysis(self,uid):
-
-        User = self.db.child("User").get()
-        Username_list = []
-        for k, v in User.val().items():
-            Username_list.append(k)
-
-        calendar = self.db.child("Calendar").get()
-
-        na = []
-        cate = []
-        co = []
-        date_list = []
-        count = -1
-
-        gender_list = []
-        job_list = []
-
-        for k, v in calendar.val().items():
-            count = count + 1
-            if Username_list[count] in k:
-                date = self.db.child("Calendar").child(Username_list[count]).get()
-                for k2, v2 in date.val().items():
-                    category = self.db.child("Calendar").child(Username_list[count]).child(k2).get()
-                    for k3, v3 in category.val().items():
-                        if None in v3:
-                            v3 = {'1': v3[-1]}
-                        for i in range(
-                                len(self.db.child("Calendar").child(Username_list[count]).child(k2).child(k3).get().val())):
-                            num = v3
-                        for k4, v4 in num.items():
-
-                            for n in range(len(k4)):
-                                cost = v4
-
-                                value = self.db.child("User").child(k).get().val()
-
-                                for k6, v6 in value.items():
-                                    if k6 == 'gen':
-                                        gender_list.append(v6)
-                                    if k6 == 'job':
-                                        job_list.append(v6)
-
-                                for k5, v5 in cost.items():
-                                    na.append(k)
-                                    co.append(v5)
-                                    cate.append(k3)
-                                    date_list.append(k2)
-
-        co = list(map(int, co))
-
-        df = pd.DataFrame()
-        df['name'] = na
-        df['date'] = date_list
-        df['category'] = cate
-        df['cost'] = co
-        df['gender'] = gender_list
-        df['job'] = job_list
-
-        my_df = df['name'] == uid
-
-        if df[my_df].empty:
-            ucategory = "정보없음"
-            templist = "정보없음"
-        else:
-            ucategory = df[my_df]['category'].mode()[0]
-
-            my_df = df['name'] == uid
-            ucategory = df[my_df]['category'].mode()[0]
-
-            clist = ['금융', '미용&뷰티', '문구&디지털', '통신', '식비', '의류&잡화', '경조사', '취미&여가', '문화', '교육', '주거&생활', '건강', '교통',
-                     '기타']
-            Association_category_list = clist
-            Association_name_list = []
-            for v in na:
-                if v not in Association_name_list:
-                    Association_name_list.append(v)
-            Association_name_list = list(set(na))
-            category = pd.DataFrame(index=Association_name_list, columns=Association_category_list)
-            category.fillna(0, inplace=True)
-            for i in range(len(Association_name_list)):
-                my_category = df[df['name'] == Association_name_list[i]]['category'].values
-                for j in range(len(my_category)):
-                    category.loc[Association_name_list[i]][my_category[j]] = category.loc[Association_name_list[i]][
-                                                                                 my_category[j]] + 1
-
-            print(category)
-
-            print(clist.index(ucategory))
-            print()
-            condition1 = category.corr()[ucategory][0:clist.index(ucategory)]
-            condition2 = category.corr()[ucategory][clist.index(ucategory) + 1:len(clist)]
-            maxvalue = pd.concat([condition1, condition2]).max()
-
-            temp_v = pd.concat([condition1, condition2]) == maxvalue
-            temp_list = pd.concat([condition1, condition2])[temp_v].index.tolist()
-
-            # 최대소비카테고리
-            print(ucategory)
-
-            print(temp_list)
-
-        return ucategory, temp_list
-
-    def users_consumption(self, uid):
-
-        User = self.db.child("User").get()
-        Username_list = []
-        for k, v in User.val().items():
-            Username_list.append(k)
-
-        user_jender = ''
-        for key, value in User.val().items():
-            if key == uid:
-                for jender_k, jender_v in value.items():
-                    if jender_k == 'gen':
-                        user_jender = jender_v
-
-        user_job = ''
-        for key, value in User.val().items():
-            if key == uid:
-                for job_k, job_v in value.items():
-                    if job_k == 'job':
-                        user_job = job_v
-
-        calendar = self.db.child("Calendar").get()
-
-        name_list = []
-        category_list = []
-        cost_list = []
-        date_list = []
-        count = -1
-
-        gender_list = []
-        job_list = []
-
-        for k, v in calendar.val().items():
-            count = count + 1
-            if Username_list[count] in k:
-                date = self.db.child("Calendar").child(Username_list[count]).get()
-                for k2, v2 in date.val().items():
-                    category = self.db.child("Calendar").child(Username_list[count]).child(k2).get()
-                    for k3, v3 in category.val().items():
-                        if None in v3:
-                            v3 = {'1': v3[-1]}
-                        for i in range(
-                                len(self.db.child("Calendar").child(Username_list[count]).child(k2).child(k3).get().val())):
-                            num = v3
-                        for k4, v4 in num.items():
-
-                            for n in range(len(k4)):
-                                cost = v4
-
-                                value = self.db.child("User").child(k).get().val()
-
-                                for k6, v6 in value.items():
-                                    if k6 == 'gen':
-                                        gender_list.append(v6)
-                                    if k6 == 'job':
-                                        job_list.append(v6)
-
-                                for k5, v5 in cost.items():
-                                    name_list.append(k)
-                                    cost_list.append(v5)
-                                    category_list.append(k3)
-                                    date_list.append(k2)
-
-        cost_list = list(map(int, cost_list))
-        df = pd.DataFrame()
-        df['name'] = name_list
-        df['date'] = date_list
-        df['category'] = category_list
-        df['cost'] = cost_list
-        df['gender'] = gender_list
-        df['job'] = job_list
-
-        #나와 같은 조건의 유저  카테고리 사용빈도
-        condition = (df['gender'] == user_jender) & (df['job'] == user_job)
-        category_frequency = df[condition]['category'].mode()[0]
-
-        today = datetime.today()
-        before_one_month = today - relativedelta(months=1)
-        months_ago = before_one_month.strftime("%Y-%m")
-        time = datetime.today().strftime("%Y-%m")
-        dataFilter = df['date'].str.contains(months_ago)
-        consumption = df[dataFilter]
-        #category_frequency = consumption[condition]['category'].mode()[0]
-        condition2 = (consumption['gender'] == user_jender) & (consumption['job'] == user_job)
-        # 나와 같은 조건의 유저 저번달 사용금액
-        users_consum_sum = consumption[condition2]['cost'].sum()
-        # 나의 저번달 사용금액
-        u_consumption = consumption['name'] == uid
-        uconsum_sum = consumption[u_consumption]['cost'].sum()
-        # 나와 같은 조건의 유저 저번달 사용빈도
-        users_lastmonth_freq = consumption[condition2]['date']
-        users_lastmonth_freq = len(list(set(users_lastmonth_freq)))
-        # 나의 저번달 사용 빈도
-        u_lastmonth_freq = consumption[u_consumption]['date']
-        u_lastmonth_freq = len(list(set(u_lastmonth_freq)))
-
-        if users_lastmonth_freq == 0:
-            users_lastmonth_freq = 0
-        else:
-            users_lastmonth_freq = round(30 / users_lastmonth_freq)
-        if u_lastmonth_freq == 0:
-            u_lastmonth_freq = 0
-        else:
-            u_lastmonth_freq = round(30 / u_lastmonth_freq)
-
-        if users_lastmonth_freq == 0:
-            users_average_consum = 0
-        else:
-            users_average_consum = users_consum_sum / users_lastmonth_freq
-
-        if u_lastmonth_freq == 0:
-            u_average_consum = 0
-        else:
-            u_average_consum = uconsum_sum / u_lastmonth_freq
-
-
-        #카테고리 연관분석
-
-        my_df = df['name'] == uid
-        ucategory = df[my_df]['category'].mode()[0]
-
-        clist = ['금융', '미용&뷰티', '문구&디지털', '통신', '식비', '의류&잡화', '경조사', '취미&여가', '문화', '교육', '주거&생활', '건강', '교통']
-        Association_category_list = clist
-        Association_name_list = []
-        for v in name_list:
-            if v not in Association_name_list:
-                Association_name_list.append(v)
-        Association_name_list = list(set(name_list))
-        category = pd.DataFrame(index=Association_name_list, columns=Association_category_list)
-        category.fillna(0, inplace=True)
-        for i in range(len(Association_name_list)):
-            my_category = df[df['name'] == Association_name_list[i]]['category'].values
-            for j in range(len(my_category)):
-                category.loc[Association_name_list[i]][my_category[j]] = category.loc[Association_name_list[i]][my_category[j]] + 1
-
-        condition1 = category.corr()[ucategory][0:clist.index(ucategory)]
-        condition2 = category.corr()[ucategory][clist.index(ucategory) + 1:len(clist)]
-        maxvalue = pd.concat([condition1, condition2]).max()
-
-        temp_v = pd.concat([condition1, condition2]) == maxvalue
-        temp_list = pd.concat([condition1, condition2])[temp_v].index.tolist()
-
-        # 이번달& 지난달 최대 지출 날짜
-
-        today = datetime.today()
-        before_one_month = today - relativedelta(months=1)
-        months_ago = before_one_month.strftime("%Y-%m")
-
-        time = datetime.today().strftime("%Y-%m")
-        dataFilter = df['date'].str.contains(time)
-        result_thismonth = df[dataFilter]
-        dataFilter = df['date'].str.contains(months_ago)
-        result_lastmonth = df[dataFilter]
-
-        u_lastmonth = result_lastmonth['name'] == uid
-        u_thismonth = result_thismonth['name'] == uid
-
-        lastmonth_list = result_lastmonth[u_lastmonth]['date'].unique().tolist()
-        thismonth_list = result_thismonth[u_thismonth]['date'].unique().tolist()
-
-        if len(lastmonth_list) == 0 and len(thismonth_list) == 0:
-            print(lastmonth_list)
-            print(thismonth_list)
-
-        if len(lastmonth_list) != 0 and len(thismonth_list) != 0:
-            lastmonth_result = result_lastmonth[u_lastmonth]
-            thismonth_result = result_thismonth[u_thismonth]
-
-            lastmonth_cost_list = []
-            thismonth_cost_list = []
-            for i in range(len(lastmonth_list)):
-                lastmonth_cost_list.append(
-                    lastmonth_result[result_lastmonth[u_lastmonth]['date'] == lastmonth_list[i]]['cost'].sum())
-
-            for i in range(len(thismonth_list)):
-                thismonth_cost_list.append(
-                    thismonth_result[result_thismonth[u_thismonth]['date'] == thismonth_list[i]]['cost'].sum())
-
-            lastmonth_max_index = [index for index, item in enumerate(lastmonth_cost_list) if
-                                   item == max(thismonth_cost_list)]
-            thismonth_max_index = [index for index, item in enumerate(thismonth_cost_list) if
-                                   item == max(thismonth_cost_list)]
-
-            if len(lastmonth_max_index) == 0:
-                lastmonth_max_index = (lastmonth_cost_list.index(max(lastmonth_cost_list)))
-
-            if len(thismonth_max_index) == 0:
-                thismonth_max_index = (thismonth_cost_list.index(max(thismonth_cost_list)))
-
-            if isinstance(lastmonth_max_index, list) == False:
-                max_index = []
-                max_index.append(lastmonth_max_index)
-                lastmonth_max_index = max_index
-
-            if isinstance(thismonth_max_index, list) == False:
-                max_index = []
-                max_index.append(thismonth_max_index)
-                thismonth_max_index = max_index
-
-            lastmonth_result = []
-            thismonth_result = []
-
-            for i in range(len(lastmonth_max_index)):
-                lastmonth_result.append(lastmonth_list[lastmonth_max_index[i]])
-
-            for i in range(len(thismonth_max_index)):
-                thismonth_result.append(thismonth_list[thismonth_max_index[i]])
-
-            lastmonth_list.clear()
-            lastmonth_list = lastmonth_result
-
-            thismonth_list.clear()
-            thismonth_list = thismonth_result
-
-        #카테고리별 지출 top3
-
-        my_df = df['name'] == uid
-        print(my_df)
-        dict_data = df[my_df]['category'].value_counts(ascending=False)
-        dict_data = pd.Series(dict_data)
-        category_unique = (df[my_df]['category'].value_counts(ascending=False).unique())
-
-        if len(dict_data.index) >= 3:
-            for i in range(3):
-                print(dict_data.index[i])
-        else:
-            for i in range(len(dict_data.index)):
-                print(dict_data.index[i])
-
-        category_freq = pd.DataFrame()
-        category_freq['category'] = dict_data.index
-        category_freq['count'] = dict_data.values
-
-        print(category_freq)
-
-        cate = []
-
-        if len(category_unique) < 3:
-            for i in range(len(category_unique)):
-                cate.extend(str(i + 1) + "위" +category_freq['category'][category_freq['count'] == category_unique[i]])
-        else :
-            for i in range(3):
-                cate.extend(str(i + 1) + "위" +category_freq['category'][category_freq['count'] == category_unique[i]])
-
-        return category_frequency, users_lastmonth_freq, users_average_consum, u_lastmonth_freq, u_average_consum, lastmonth_list, thismonth_list, cate, temp_list

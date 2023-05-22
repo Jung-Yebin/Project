@@ -93,7 +93,7 @@ def find_account():
 
 @app.route("/user/<string:uid>")
 def user_posts(uid):
-    u_category, u_budget, u_thismonth, u_usage, u_predict,uthisyear = DB.user_detail(uid)
+    u_budget, u_thismonth, u_usage, u_predict,uthisyear = DB.user_detail(uid)
     u_budget = int(u_budget)
 
     try:
@@ -104,7 +104,7 @@ def user_posts(uid):
     if u_predict == 0:
         u_predict = "해당 기능을 사용하기 위해서는 2개 이상의 제품을 구매하셔야 합니다."
 
-    return render_template("mybudget.html", uid=uid, ucategory=u_category, ubudget = u_budget, uthismonth = u_thismonth, usage=u_usage, predict_usage=u_predict, per=per,uthisyear = uthisyear)
+    return render_template("mybudget.html", uid=uid, ubudget = u_budget, uthismonth = u_thismonth, usage=u_usage, predict_usage=u_predict, per=per,uthisyear = uthisyear)
 
 @app.route("/user/mypage/<string:uid>")
 def my_page(uid):
@@ -463,104 +463,6 @@ def category_analysis2(uid):
                            fivemonth_live=fivemonth_live, fivemonth_health=fivemonth_health,
                            fivemonth_traffic=fivemonth_traffic, fivemonth_cloth=fivemonth_cloth,
                            fivemonth_etc=fivemonth_etc)
-
-@app.route("/user/association_analysis/<string:uid>")
-def association_analysis(uid):
-    ucategory, u_asso_category = DB.association_analysis(uid)
-
-    if ucategory == '식비':
-        catenum = 1
-    elif ucategory == '금융':
-        catenum = 2
-    elif ucategory == '미용&뷰티':
-        catenum = 3
-    elif ucategory == '통신':
-        catenum = 4
-    elif ucategory == '의류&잡화':
-        catenum = 5
-    elif ucategory == '경조사':
-        catenum = 6
-    elif ucategory == '취미&여가':
-        catenum = 7
-    elif ucategory == '문화':
-        catenum = 8
-    elif ucategory == '교육':
-        catenum = 9
-    elif ucategory == '주거&생활':
-        catenum = 10
-    elif ucategory == '건강':
-        catenum = 11
-    elif ucategory == '교통':
-        catenum = 12
-    elif ucategory == '문구&디지털':
-        catenum = 13
-    elif ucategory == '기타':
-        catenum = 14
-    else :
-        catenum = 0
-
-    if u_asso_category[0] == '식비':
-        associationnum = 1
-    elif u_asso_category[0] == '금융':
-        associationnum = 2
-    elif u_asso_category[0] == '미용&뷰티':
-        associationnum = 3
-    elif u_asso_category[0] == '통신':
-        associationnum = 4
-    elif u_asso_category[0] == '의류&잡화':
-        associationnum = 5
-    elif u_asso_category[0] == '경조사':
-        associationnum = 6
-    elif u_asso_category[0] == '취미&여가':
-        associationnum = 7
-    elif u_asso_category[0] == '문화':
-        associationnum = 8
-    elif u_asso_category[0] == '교육':
-        associationnum = 9
-    elif u_asso_category[0] == '주거&생활':
-        associationnum = 10
-    elif u_asso_category[0] == '건강':
-        associationnum = 11
-    elif u_asso_category[0] == '교통':
-        associationnum = 12
-    elif u_asso_category[0] == '문구&디지털':
-        associationnum = 13
-    elif u_asso_category[0] == '기타':
-        associationnum = 14
-    else :
-        associationnum = 0
-
-
-    return render_template("category_3.html", ucategory = ucategory, u_asso_category = u_asso_category, catenum = catenum, associationnum = associationnum)
-
-@app.route("/detail/<string:uid>")
-def posts_detail(uid):
-    category, users_thismonth_freq, users_average_consum, u_thismonth_freq, u_average_consum,lastmonth_list, thismonth_list, cate, temp_list = DB.users_consumption(uid)
-
-    if len(lastmonth_list) == 0:
-        del lastmonth_list
-        lastmonth_list = "저번달 소비내역 없음"
-    if len(thismonth_list) == 0:
-        del thismonth_list
-        thismonth_list = "이번달 소비내역 없음"
-
-    if users_thismonth_freq == 0 or users_average_consum == 0 or u_thismonth_freq == 0 or u_average_consum == 0:
-        length = 0
-        message = "정보없음"
-    else:
-        length = 1
-
-    if u_thismonth_freq != 0 and users_thismonth_freq != 0 and u_average_consum != 0 and users_average_consum != 0:
-        if u_thismonth_freq > users_thismonth_freq and u_average_consum > users_average_consum:
-            message = "당신은 아무것도 하지 않아도 통장 잔고가 남아나지 않는 소비습관을 가지고 있습니다. 자잘한 소비를 줄이도록 하세요"
-        if u_thismonth_freq > users_thismonth_freq and u_average_consum <= users_average_consum:
-            message = "당신은 자린고비형 소비습관을 가지고 있습니다. 칭찬합니다."
-        if u_thismonth_freq <= users_thismonth_freq and u_average_consum <= users_average_consum:
-            message = "당신은 한번에 flex하는 경향이 강하군요 큰 돈을 쓰지 않도록 유의하세요"
-        if u_thismonth_freq <= users_thismonth_freq and u_average_consum > users_average_consum:
-            message = "당신은 심각한 수준의 소비중독 상태입니다."
-
-    return render_template("detail.html", uid=uid, category=category, usersfreq = users_thismonth_freq , usersconsum = users_average_consum , ufreq = u_thismonth_freq, uconsum = u_average_consum, lastmax = lastmonth_list, thismax = thismonth_list, length = length, cate = cate,templist=temp_list,msg = message)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
